@@ -81,7 +81,7 @@ class Grafo:
         else:
             #igual que arriba pero para cuando la distancia de javier es mayor
             retraso = distancia_javier-distancia_andreina
-            print(f"Javier debe salir {retraso} minutos tarde")
+            print(f"Andreina debe salir {retraso} minutos tarde")
             tiempo = retraso
             for y, i in enumerate(camino_andreina):
                 if i != camino_andreina[-1]:

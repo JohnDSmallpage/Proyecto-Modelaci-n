@@ -14,7 +14,7 @@ def main():
     # grafo_javier.imprimir_matriz() 
     # grafo_javier.imprimir_grafico()
     Casa_javier = 7
-    Final =31
+    Final =10
     Casa_andreina = 20
     camino_javier,distancia_javier = grafo_javier.dijkstra(Casa_javier,Final)
     camino_andreina,distancia_andreina = grafo_andreina.dijkstra(Casa_andreina,Final)
