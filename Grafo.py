@@ -1,12 +1,11 @@
-import networkx as nx
-import matplotlib.pyplot as plt
+
 
 class Grafo:
     def __init__(self, num_nodos, pesos):
         self.num_nodos = num_nodos
         self.pesos = pesos
         self.matriz_adyacencia = self.generar_matriz()
-        self.grafo = self.crear_grafo()
+       
 
     def generar_matriz(self):
         matriz = [[0] * self.num_nodos for _ in range(self.num_nodos)]
@@ -72,11 +71,11 @@ class Grafo:
             for i in tiempo_javier:
                 if tiempo_javier[i] == tiempo_andreina[i] :
                     print(f"En el minuto {i} estan caminando juntos en la ruta {tiempo_javier[i]}")
-                    return False,"javier",tiempo_javier[i]
+                    return False,"javier",tiempo_javier[i], retraso, i
 
                 elif i == distancia_javier+retraso:
                     print("LLegaron sin ser vistos caminando juntos")
-                    return True,"",tiempo_javier[i]
+                    return True,"javier",tiempo_javier[i], retraso, i
                 
         else:
             #igual que arriba pero para cuando la distancia de javier es mayor
@@ -99,32 +98,16 @@ class Grafo:
             for i in tiempo_andreina:
                 if tiempo_andreina[i] == tiempo_javier[i]:
                     print(f"En el minuto {i} estan caminando juntos en la ruta {tiempo_andreina[i]}")
-                    return False,"andreina",tiempo_andreina[i]
+                    return False,"andreina",tiempo_andreina[i], retraso, i
                 elif i == distancia_andreina+retraso:
                     print("LLegaron sin ser vistos caminando juntos")
-                    return True,"",tiempo_andreina[i]
+                    return True,"andreina",tiempo_andreina[i], retraso, i
 
-    def crear_grafo(self):
-        G = nx.Graph()
-        for (i, j), peso in self.pesos.items():
-            G.add_edge(i, j, weight=peso)
-        return G
+
     
     def imprimir_matriz(self):
         for fila in self.matriz_adyacencia:
             print(fila)
 
 
-    def imprimir_grafico(self):
-        G = nx.Graph()
-        for (i, j), peso in self.pesos.items():
-            G.add_edge(i, j, weight=peso)
-        pos = nx.spring_layout(G)
-        labels = nx.get_edge_attributes(G, 'weight')
-        nx.draw(G, pos, with_labels=True, node_size=700, node_color='lightblue', font_weight='bold', font_size=10)
-        nx.draw_networkx_edge_labels(G, pos, edge_labels=labels)
-        plt.show()
-
-    #Codigo de pruebas!!
-    # def camino_optimo(self, punto_i, punto_y):
-    #     return nx.dijkstra_path(self.grafo, punto_i, punto_y)
+  
