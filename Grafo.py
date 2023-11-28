@@ -11,7 +11,7 @@ class Grafo:
         matriz = [[0] * self.num_nodos for _ in range(self.num_nodos)]
         for (i, j), peso in self.pesos.items():
             matriz[i][j] = peso
-            matriz[j][i] = peso  # Si el grafo es no dirigido
+            matriz[j][i] = peso 
         return matriz
     
     def dijkstra(self, punto_i, punto_y):

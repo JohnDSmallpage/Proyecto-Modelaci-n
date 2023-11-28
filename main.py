@@ -1,6 +1,6 @@
 from Grafo import Grafo
 
-def main():
+def main(destino):
 
     # Ejemplo de uso
     pesos_javier = {
@@ -10,17 +10,17 @@ def main():
         (0, 6): 7, (0, 1): 7, (1, 2): 7, (1, 7): 9, (3, 4): 7, (3, 9): 9, (4, 5): 7, (4, 10): 7, (5, 11): 7, (6, 12): 7, (6,7):7,(7,8):7,(7,13):9,(8,9):7,(8,14):9,(9,10):7,(9,15):9,(10,16):7,(11,17):7,(12,13):7,(12,18):7,(13,14):7,(13,19):9,(14,15):7,(14,20):9,(15,16):7,(15,21):9,(16,17):7,(16,22):7,(17,23):7,(18,19):7,(18,24):7,(19,20):7,(19,25):9,(20,21):7,(20,26):9,(21,22):7,(21,27):9,(22,23):7,(22,28):7,(23,29):7,(24,25):12,(24,30):7,(25,26):12,(25,31):9,(26,27):12,(26,32):9,(27,28):12,(27,33):9,(28,29):12,(28,34):7,(29,35):7,(30,31):7,(31,32):7,(32,33):7,(33,34):7,(34,35):7}
     
     
-    # grafo_javier.imprimir_matriz() 
+    #grafo_javier.imprimir_matriz() 
     # grafo_javier.imprimir_grafico()
     Casa_javier = 7
-    Final =10
+    Final = destino
     Casa_andreina = 20
     resultado_string= ""
 
     encontrado = False
     while not encontrado: #evalua que no se haya encontrado unas rutas donde no se encuentran
         #regresa si encontro camino, la persona con la distancia mas corta y el camino donde se encuentran
-        grafo_javier = Grafo(36, pesos_javier)
+        grafo_javier = Grafo(36, pesos_javier) 
         grafo_andreina = Grafo(36, pesos_andreina)
         camino_javier,distancia_javier = grafo_javier.dijkstra(Casa_javier,Final)
         camino_andreina,distancia_andreina = grafo_andreina.dijkstra(Casa_andreina,Final)
@@ -47,15 +47,15 @@ def main():
 """ 
         if encontrado== False:
             resultado_string+= f"""
-        Los encontraron caminando en el minuto {minuto} en el camino {camino}, por lo que se calcula otra ruta
+        Los encontraron caminando juntos en el minuto {minuto} en el camino {camino}, por lo que se calcula otra ruta
 """
         else:
             resultado_string+= f"""
         No fueron encontrados caminando juntos, por lo que esta es la solucion
 """
-            
-    return resultado_string
         
+    return resultado_string
+   
         # if encontrado == False: #si no se encontro camino vuelve a inicializar las variables para la siguiente evaluacion
             # grafo_javier = Grafo(36, pesos_javier)
             # grafo_andreina = Grafo(36, pesos_andreina)

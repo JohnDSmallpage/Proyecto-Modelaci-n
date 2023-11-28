@@ -2,9 +2,22 @@ import tkinter as tk
 from tkinter import ttk
 from main import main
 
+opciones = [
+            ['Discoteca "The Darkness"',31],
+            ['Discoteca "La Pasión"',10],
+            ['Cervecería "Mi Rolita"',33],
+            ['Café "Sensación"',35]]
+        
+            
+
 def mostrar_seleccion():
+    selec = 0;
     seleccion = lista_desplegable.get()
-    resultado_string = main()
+    for i in range(len(opciones)):
+        if seleccion == opciones[i][0]:
+            selec=opciones[i][1]
+
+    resultado_string = main(selec)
     label_resultado.config(text=f"Seleccionado: {seleccion}\nResultado: {resultado_string}")
 
 # Crear la ventana principal
