@@ -1,3 +1,6 @@
+import networkx as nx
+import matplotlib.pyplot as plt
+
 
 
 class Grafo:
@@ -11,7 +14,8 @@ class Grafo:
         matriz = [[0] * self.num_nodos for _ in range(self.num_nodos)]
         for (i, j), peso in self.pesos.items():
             matriz[i][j] = peso
-            matriz[j][i] = peso 
+            matriz[j][i] = peso
+            print(f"Agregando arista {i}-{j} con peso {peso}")
         return matriz
     
     def dijkstra(self, punto_i, punto_y):
@@ -103,7 +107,28 @@ class Grafo:
                     print("LLegaron sin ser vistos caminando juntos")
                     return True,"andreina",tiempo_andreina[i], retraso, i
 
+    def graficar(self):
+        G = nx.Graph()
+        
+        nodos_identificadores = ['55/15', '55/14', '55/13', '55/12', '55/11', '55/10', '54/15', '54/14', '54/13', '54/12', '54/11', '54/10','53/15', '53/14', '53/13', '53/12', '53/11', '53/10', '52/15', '52/14', '52/13', '52/12', '52/11', '52/10', '51/15', '51/14', '51/13', '51/12', '51/11', '51/10','50/15', '50/14', '50/13', '50/12', '50/11', '50/10' ]
 
+        for i in range(self.num_nodos):
+            G.add_node(i, label=nodos_identificadores[i])
+
+        for i in range(self.num_nodos):
+            for j in range(i + 1, self.num_nodos):
+                peso = self.matriz_adyacencia[i][j]
+                if peso > 0:
+                    G.add_edge(i, j, weight=peso)
+                    
+                    
+
+         # Establecer posiciones de los nodos en una cuadrícula
+        
+         # Establecer posiciones de los nodos en una cuadrícula 6x6
+        pos = {i: (i % 6, 5 - i // 6) for i in range(self.num_nodos)}  # Invertir las filas para empezar desde arriba
+
+        return G,pos
     
     def imprimir_matriz(self):
         for fila in self.matriz_adyacencia:
